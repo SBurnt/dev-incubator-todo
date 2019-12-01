@@ -1,0 +1,41 @@
+{
+  "name": "dev-incubator-todo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint src/",
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server --mode development --watch --open",
+    "clear": "del-cli dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SBurnt/dev-incubator-todo.git"
+  },
+  "author": "SBurnt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SBurnt/dev-incubator-todo/issues"
+  },
+  "homepage": "https://github.com/SBurnt/dev-incubator-todo#readme",
+  "devDependencies": {
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.2.0",
+    "eslint": "^6.7.2",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.1.1",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "prettier": "^1.19.1",
+    "style-loader": "^1.0.1",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
+  }
+}
