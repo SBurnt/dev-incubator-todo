@@ -1,3 +1,7 @@
+import '../css/reset.css';
+import '../css/style.css';
+// import '../css/fontello.css';
+
 /* eslint-disable no-use-before-define */
 /* eslint-disable no-param-reassign */
 // ---------- ADD FORM ----------
@@ -352,7 +356,7 @@ const arrTasksCompleted = [
 
   // ---------- TILED OR LIST VIEW OF TASKS ----------
 
-  const btnTiledViewTasks = this.document.querySelector('.type-task-display-tiled');
+  const btnTiledViewTasks = document.querySelector('.type-task-display-tiled');
 
   btnTiledViewTasks.addEventListener('click', () => {
     document.querySelectorAll('.list-to-do-item').forEach(el => {
@@ -364,7 +368,7 @@ const arrTasksCompleted = [
     });
   });
 
-  const btnInlineViewTasks = this.document.querySelector('.type-task-display-inline');
+  const btnInlineViewTasks = document.querySelector('.type-task-display-inline');
 
   btnInlineViewTasks.addEventListener('click', () => {
     document.querySelectorAll('.list-to-do-item').forEach(el => {

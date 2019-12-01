@@ -1,14 +1,19 @@
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   // mode: 'production',
   devtool: 'source-map',
-  entry: './src/index.js',
+  entry: './src/js/javascript.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist/'),
+  },
+  devServer: {
+    publicPath: '/',
+    contentBase: './',
+    hot: true,
   },
   optimization: {
     minimize: true,
@@ -16,7 +21,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.m?js$/,
         exclude: /(node_modules|bower_components)/,
         use: {
           loader: 'babel-loader',
@@ -27,20 +32,29 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader'],
-        }),
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: '../',
+              hmr: process.env.NODE_ENV === 'development',
+            },
+          },
+          'css-loader',
+        ],
       },
     ],
   },
   plugins: [
-    new ExtractTextPlugin({ filename: 'style.css' }),
+    new MiniCssExtractPlugin({ filename: '[name].css', chunkFilename: '[id].css' }),
     new HtmlWebpackPlugin({
-      inject: false,
-      hash: true,
-      template: './src/index.html',
+      // inject: false,
+      // hash: true,
+      // template: './src/index.html',
+      // filename: 'index.html',
       filename: 'index.html',
+      template: path.resolve(__dirname, 'src/', 'index.html'),
+      chunks: ['main'],
     }),
   ],
 };
