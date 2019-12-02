@@ -1,12 +1,27 @@
 import '../css/reset.css';
 import '../css/style.css';
-// import '../css/fontello.css';
+import '../css/fontello.css';
+
+// Browser compatibility ie11 (forEach)
+if (window.NodeList && !NodeList.prototype.forEach) {
+  NodeList.prototype.forEach = function(callback, thisArg) {
+    // eslint-disable-next-line no-param-reassign
+    thisArg = thisArg || window;
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0; i < this.length; i++) {
+      callback.call(thisArg, this[i], i, this);
+    }
+  };
+}
 
 /* eslint-disable no-use-before-define */
 /* eslint-disable no-param-reassign */
 // ---------- ADD FORM ----------
 const btnAddTask = document.querySelector('#add-task');
 btnAddTask.addEventListener('click', () => {
+  // Array.prototype.slice.call(document.querySelectorAll('#hide-form')).forEach(elem => {
+  //   elem.style.display = elem.style.display === 'flex' ? 'none' : 'flex';
+  // });
   document.querySelectorAll('#hide-form').forEach(elem => {
     elem.style.display = elem.style.display === 'flex' ? 'none' : 'flex';
   });
@@ -212,7 +227,6 @@ const arrTasksCompleted = [
       newText.innerHTML = newTextarea.value;
       newTextarea.replaceWith(newText);
       arrTasks[index].notes = newTextarea.value;
-      // console.log('arrTasks edit', arrTasks);
       createNewTask(arrTasks);
     }
 
@@ -291,8 +305,8 @@ const arrTasksCompleted = [
 
     const newIconPriority = document.createElement('i');
     newIconPriority.className = 'icon-ok-circled2';
-    // newPriority.appendChild(newIconPriority);
-    newPriority.prepend(newIconPriority);
+    // newPriority.prepend(newIconPriority);
+    newPriority.insertAdjacentElement('afterbegin', newIconPriority);
 
     const newLogo = document.createElement('div');
     newLogo.className = 'task-logo';
