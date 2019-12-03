@@ -14,6 +14,10 @@ if (window.NodeList && !NodeList.prototype.forEach) {
   };
 }
 
+const colorHightPriority = 'rgb(75, 129, 220)';
+const colorMediumPriority = 'rgb(26, 212, 172)';
+const colorLowPriority = 'rgb(42, 212, 26)';
+
 /* eslint-disable no-use-before-define */
 /* eslint-disable no-param-reassign */
 // ---------- ADD FORM ----------
@@ -64,7 +68,7 @@ const arrTasks = [
     colorTask: 'rgb(75, 129, 220)',
   },
   {
-    name: 'Lorem, ipsum 2.',
+    name: 'Norem, ipsum 2.',
     date: '2018-08-02',
     time: '18:30',
     notes: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit.',
@@ -73,7 +77,7 @@ const arrTasks = [
     colorTask: 'rgb(26, 212, 172)',
   },
   {
-    name: 'Lorem, ipsum 3.',
+    name: 'Torem, ipsum 3.',
     date: '2019-11-21',
     time: '11:30',
     notes:
@@ -83,7 +87,7 @@ const arrTasks = [
     colorTask: 'rgb(42, 212, 26)',
   },
   {
-    name: 'Lorem, ipsum 4.',
+    name: 'Korem, ipsum 4.',
     date: '2017-09-15',
     time: '10:12',
     notes:
@@ -163,8 +167,8 @@ const arrTasksCompleted = [
   // ---------- ADD LIST TO DO ----------
   function createTask(name, date, time, notes, priority, completed, colorTask, index, countFilter) {
     const countToDo = arrTasks.length;
-    // console.log("arrTasks ", arrTasks);
-    console.log(index + ' ' + colorTask);
+    // console.log('arrTasks ', arrTasks);
+    // console.log(index + ' ' + colorTask);
 
     const newLi = document.createElement('li');
     newLi.className = 'list-to-do-item';
@@ -182,8 +186,17 @@ const arrTasksCompleted = [
 
     const newLogo = document.createElement('div');
     newLogo.className = 'task-logo';
-    newLogo.textContent = 'L';
-    newLogo.style.backgroundColor = colorTask;
+    newLogo.textContent = name.charAt(0).toUpperCase();
+    if (priority === '↑ Hight Priority') {
+      newLogo.style.backgroundColor = colorHightPriority;
+      arrTasks[index].colorTask = colorHightPriority;
+    } else if (priority === 'Medium Priority') {
+      newLogo.style.backgroundColor = colorMediumPriority;
+      arrTasks[index].colorTask = colorMediumPriority;
+    } else {
+      newLogo.style.backgroundColor = colorLowPriority;
+      arrTasks[index].colorTask = colorLowPriority;
+    }
     newLi.appendChild(newLogo);
 
     const newTitle = document.createElement('h3');
@@ -321,7 +334,7 @@ const arrTasksCompleted = [
 
     const newLogo = document.createElement('div');
     newLogo.className = 'task-logo';
-    newLogo.textContent = 'L';
+    newLogo.textContent = name.charAt(0).toUpperCase();
     newLogo.style.backgroundColor = colorTask;
     newLi.appendChild(newLogo);
 
