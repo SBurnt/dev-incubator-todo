@@ -61,6 +61,7 @@ const arrTasks = [
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque ex enim veniam iure quidem neque aperiam, esse eius, temporibus nemo sit, nihil quae libero accusamus excepturi eos. Cumque, culpa tempora odio fugiat voluptatem, veniam perferendis quisquam eum quia incidunt adipisci nisi nesciunt dignissimos officia maiores voluptates amet alias animi earum.',
     priority: '↑ Hight Priority',
     completed: false,
+    colorTask: 'rgb(75, 129, 220)',
   },
   {
     name: 'Lorem, ipsum 2.',
@@ -69,6 +70,7 @@ const arrTasks = [
     notes: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit.',
     priority: 'Medium Priority',
     completed: false,
+    colorTask: 'rgb(26, 212, 172)',
   },
   {
     name: 'Lorem, ipsum 3.',
@@ -78,6 +80,7 @@ const arrTasks = [
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque ex enim veniam iure quidem neque aperiam, esse eius, temporibus nemo sit, nihil quae libero accusamus excepturi eos. Cumque, culpa tempora odio fugiat voluptatem, veniam perferendis quisquam eum quia incidunt adipisci nisi nesciunt dignissimos officia maiores voluptates amet alias animi earum.',
     priority: '↓ Low Priority',
     completed: false,
+    colorTask: 'rgb(42, 212, 26)',
   },
   {
     name: 'Lorem, ipsum 4.',
@@ -87,6 +90,7 @@ const arrTasks = [
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque ex enim veniam iure quidem neque aperiam, esse eius, temporibus nemo sit, nihil quae libero accusamus excepturi eos. Cumque, culpa tempora odio fugiat voluptatem, veniam perferendis quisquam eum quia incidunt adipisci nisi nesciunt dignissimos officia maiores voluptates amet alias animi earum.',
     priority: 'Medium Priority',
     completed: false,
+    colorTask: 'rgb(26, 212, 172)',
   },
 ];
 
@@ -99,6 +103,7 @@ const arrTasksCompleted = [
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque ex enim veniam iure quidem neque aperiam, esse eius, temporibus nemo sit, nihil quae libero accusamus excepturi eos. Cumque, culpa tempora odio fugiat voluptatem, veniam perferendis quisquam eum quia incidunt adipisci nisi nesciunt dignissimos officia maiores voluptates amet alias animi earum.',
     priority: '↑ Hight Priority',
     completed: true,
+    colorTask: 'rgb(75, 129, 220)',
   },
   {
     name: 'СLorem, ipsum 2.',
@@ -107,6 +112,7 @@ const arrTasksCompleted = [
     notes: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit.',
     priority: 'Medium Priority',
     completed: true,
+    colorTask: 'rgb(26, 212, 172)',
   },
   {
     name: 'СLorem, ipsum 3.',
@@ -116,6 +122,7 @@ const arrTasksCompleted = [
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque ex enim veniam iure quidem neque aperiam, esse eius, temporibus nemo sit, nihil quae libero accusamus excepturi eos. Cumque, culpa tempora odio fugiat voluptatem, veniam perferendis quisquam eum quia incidunt adipisci nisi nesciunt dignissimos officia maiores voluptates amet alias animi earum.',
     priority: '↓ Low Priority',
     completed: true,
+    colorTask: 'rgb(42, 212, 26)',
   },
 ];
 
@@ -141,6 +148,7 @@ const arrTasksCompleted = [
       notes: uNotes.value,
       priority: uSelectPriority.value,
       completed: false,
+      colorTask: 'rgb(108, 110, 112)',
     };
     arrTasks.push(taskObj);
     createNewTask(arrTasks);
@@ -153,9 +161,10 @@ const arrTasksCompleted = [
   }
 
   // ---------- ADD LIST TO DO ----------
-  function createTask(name, date, time, notes, priority, completed, index, countFilter) {
+  function createTask(name, date, time, notes, priority, completed, colorTask, index, countFilter) {
     const countToDo = arrTasks.length;
     // console.log("arrTasks ", arrTasks);
+    console.log(index + ' ' + colorTask);
 
     const newLi = document.createElement('li');
     newLi.className = 'list-to-do-item';
@@ -174,6 +183,7 @@ const arrTasksCompleted = [
     const newLogo = document.createElement('div');
     newLogo.className = 'task-logo';
     newLogo.textContent = 'L';
+    newLogo.style.backgroundColor = colorTask;
     newLi.appendChild(newLogo);
 
     const newTitle = document.createElement('h3');
@@ -282,6 +292,7 @@ const arrTasksCompleted = [
         item.notes,
         item.priority,
         item.completed,
+        item.colorTask,
         index,
         countFilter,
       );
@@ -289,7 +300,7 @@ const arrTasksCompleted = [
   }
 
   // ---------- ADD LIST COMPLETED ----------
-  function createTaskCompleted(name, date, time, notes, priority, completed, index) {
+  function createTaskCompleted(name, date, time, notes, priority, completed, colorTask, index) {
     const countCompleted = arrTasksCompleted.length;
     // console.log("count arrTasksCompleted ", countCompleted);
     // console.log('arrTasksCompleted ', arrTasksCompleted);
@@ -311,6 +322,7 @@ const arrTasksCompleted = [
     const newLogo = document.createElement('div');
     newLogo.className = 'task-logo';
     newLogo.textContent = 'L';
+    newLogo.style.backgroundColor = colorTask;
     newLi.appendChild(newLogo);
 
     const newTitle = document.createElement('h3');
@@ -363,6 +375,7 @@ const arrTasksCompleted = [
         item.notes,
         item.priority,
         (item.completed = true),
+        item.colorTask,
         index,
       );
     });
