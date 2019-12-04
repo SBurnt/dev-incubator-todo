@@ -1,133 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Dev Incubator - Task tracker</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <!-- <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/fontello.css" /> -->
+  </head>
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Dev Incubator - Task tracker</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	<!-- <link rel="stylesheet" href="css/reset.css" />
-	<link rel="stylesheet" href="css/style.css" />
-	<link rel="stylesheet" href="css/fontello.css"> -->
-</head>
+  <body>
+    <div class="container">
+      <div class="sidebar-left sidebar-left-hidden">
+        <div><i class="icon-cancel"></i></div>
+        <div class="sidebar-logo-wrapper">
+          <div class="logo"></div>
+          <h1 class="logo-title">ToDo</h1>
+        </div>
+        <nav class="sidebar-nav">
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="#" class="" target="_blank"
+                ><i class="icon-home"></i>Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="#" class="" target="_blank"
+                ><i class="icon-cog"></i>Settings</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
 
-<body>
-	<div class="container">
-		<div class="sidebar-left sidebar-left-hidden">
-			<div><i class="icon-cancel"></i></div>
-			<div class="sidebar-logo-wrapper">
-				<div class="logo"></div>
-				<h1 class="logo-title">ToDo</h1>
-			</div>
-			<nav class="sidebar-nav">
-				<ul class="nav-list">
-					<li class="nav-item">
-						<a href="https://www.onliner.by/" class="" target="_blank"><i class="icon-home"></i>Home</a>
-					</li>
-					<li class="nav-item">
-						<a href="https://www.tut.by/" class="" target="_blank"><i class="icon-cog"></i>Settings</a>
-					</li>
-				</ul>
-			</nav>
-		</div>
+      <div class="content-wrapper">
+        <!-- ---------- HEADER OPTIONS MENU TOP ---------- -->
+        <header class="header">
+          <div class="header-options-menu-top">
+            <div class="burger-main-menu">
+              <i class="icon-left-dir"></i><i class="icon-menu"></i>
+            </div>
 
-		<div class="content-wrapper">
+            <div class="header-options-menu-top-wrapper">
+              <select class="sort-task-priority">
+                <option value="all">All Priority</option>
+                <option value="hight">Hight Priority</option>
+                <option value="medium">Medium Priority</option>
+                <option value="low">Low Priority</option>
+              </select>
 
-			<!-- ---------- HEADER OPTIONS MENU TOP ---------- -->	
-			<header class="header">
-				<div class="header-options-menu-top">
-					<div class="burger-main-menu"><i class="icon-left-dir"></i><i class="icon-menu"></i></div>
+              <div class="dropdown">
+                <!-- <button onclick="myFunction()" class="dropbtn"><i onclick="myFunction()" class="dropbtn icon-sort-alphabet"></i></button> -->
+                <!-- <i onclick="myFunction()" class="dropbtn icon-sort-alphabet"></i> -->
+                <i class="dropbtn icon-sort-alphabet"></i>
+                <div id="myDropdown" class="dropdown-content">
+                  <li class="li" href="#" data-all="all">All Priority</li>
+                  <li class="li" href="#" data-hight="hight">Hight Priority</li>
+                  <li class="li" href="#" data-medium="medium">Medium Priority</li>
+                  <li class="li" href="#" data-low="low">Low Priority</li>
+                </div>
+              </div>
 
-					<div class="header-options-menu-top-wrapper">
-						<select class="sort-task-priority">
-							<option value="all">All Priority</option>
-							<option value="hight">Hight Priority</option>
-							<option value="medium">Medium Priority</option>
-							<option value="low">Low Priority</option>
-						</select>
-						<select class="sort-date-created">
-							<option selected disabled>Sort by date</option>
-							<option value="up">New tasks</option>
-							<option value="down">Old tasks</option>
-						</select>
-						<button id="add-task" class="btn btn-primary btn-show-add-form">Add task</button>
-					</div>
-					<div class="authorization-wrapper"><i class="icon-emo-happy"></i><i class="icon-down-dir"></i></div>
-				</div>
-			</header>
-			<main class="main">
-				<div class="main-wrapper">
+              <select class="sort-date-created">
+                <option selected disabled>Sort by date</option>
+                <option value="up">New tasks</option>
+                <option value="down">Old tasks</option>
+              </select>
+              <button id="add-task" class="btn btn-primary btn-show-add-form">Add task</button>
+            </div>
+            <div class="authorization-wrapper">
+              <i class="icon-emo-happy"></i><i class="icon-down-dir"></i>
+            </div>
+          </div>
+        </header>
+        <main class="main">
+          <div class="main-wrapper">
+            <!-- ---------- ADD FORM ---------- -->
+            <section
+              id="hide-form"
+              class="col-xl-8 col-lg-9 col-md-10 col-sm-12 mx-auto"
+              style="display: none;"
+            >
+              <form class="col-sm-12">
+                <fieldset class="form-group">
+                  <legend class="form-legend">Create a new task</legend>
+                  <div class="form-group row">
+                    <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="inputName"
+                        placeholder="Task name"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputDate" class="col-sm-2 col-form-label">Date</label>
+                    <div class="col-sm-10">
+                      <input type="date" class="form-control" id="inputDate" />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputTime" class="col-sm-2 col-form-label">Time</label>
+                    <div class="col-sm-10">
+                      <input type="time" class="form-control" id="inputTime" />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="selectPriority" class="col-sm-2 col-form-label">Priority</label>
+                    <div class="col-sm-10">
+                      <select id="selectPriority" class="select-task-priority form-control">
+                        <option disabled selected label="Select task priority"></option>
+                        <option value="↑ Hight Priority">Hight Priority</option>
+                        <option value="Medium Priority">Medium Priority</option>
+                        <option value="↓ Low Priority">Low Priority</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputTextarea" class="col-sm-2 col-form-label">Content</label>
+                    <div class="col-sm-10">
+                      <textarea
+                        name="inputTextarea"
+                        id="inputTextarea"
+                        class="form-control"
+                        placeholder="Task content..."
+                      ></textarea>
+                    </div>
+                  </div>
+                </fieldset>
+                <button id="btn-add-task" class="btn btn-primary">Add task</button>
+              </form>
+            </section>
+            <div class="type-task-display">
+              <span class="type-task-display-tiled"><i class="icon-th"></i></span>
+              <span class="type-task-display-inline"><i class="icon-th-list"></i></span>
+            </div>
 
-					<!-- ---------- ADD FORM ---------- -->
-					<section id="hide-form" class="col-xl-8 col-lg-9 col-md-10 col-sm-12 mx-auto" style="display: none;">
-						<form class="col-sm-12">
-							<fieldset class="form-group">
-								<legend class="form-legend">Create a new task</legend>
-								<div class="form-group row">
-									<label for="inputName" class="col-sm-2 col-form-label">Name</label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="inputName" placeholder="Task name">
-									</div>
-								</div>
-								<div class="form-group row">
-									<label for="inputDate" class="col-sm-2 col-form-label">Date</label>
-									<div class="col-sm-10">
-										<input type="date" class="form-control" id="inputDate">
-									</div>
-								</div>
-								<div class="form-group row">
-									<label for="inputTime" class="col-sm-2 col-form-label">Time</label>
-									<div class="col-sm-10">
-										<input type="time" class="form-control" id="inputTime">
-									</div>
-								</div>
-								<div class="form-group row">
-									<label for="selectPriority" class="col-sm-2 col-form-label">Priority</label>
-									<div class="col-sm-10">
-										<select id="selectPriority" class="select-task-priority form-control">
-											<option disabled selected label="Select task priority"></option>
-											<option value="↑ Hight Priority">Hight Priority</option>
-											<option value="Medium Priority">Medium Priority</option>
-											<option value="↓ Low Priority">Low Priority</option>
-										</select>
-									</div>
-								</div>
-								<div class="form-group row">
-									<label for="inputTextarea" class="col-sm-2 col-form-label">Content</label>
-									<div class="col-sm-10">
-										<textarea name="inputTextarea" id="inputTextarea" class="form-control" placeholder="Task content..."></textarea>
-									</div>
-								</div>
-							</fieldset>
-							<button id="btn-add-task" class="btn btn-primary">Add task</button>
-						</form>
-					</section>
-					<div class="type-task-display">
-						<span class="type-task-display-tiled"><i class="icon-th"></i></span>
-						<span class="type-task-display-inline"><i class="icon-th-list"></i></span>
-					</div>
+            <!-- ---------- MAIN SECTION TO DO ---------- -->
+            <section class="section-to-do">
+              <h2 class="list-to-do-title">To Do <span class="list-to-do-count"></span></h2>
+              <ul class="list-to-do-wrapper list-wrapper"></ul>
+            </section>
 
-					<!-- ---------- MAIN SECTION TO DO ---------- -->
-					<section class="section-to-do">
-						<h2 class="list-to-do-title">To Do <span class="list-to-do-count"></span></h2>
-						<ul class="list-to-do-wrapper list-wrapper">
-						</ul>
-					</section>
-
-					<!-- ---------- MAIN SECTION COMPLETED ---------- -->
-					<section class="section-completed">
-						<h2 class="list-completed-title">Completed <span class="list-completed-count"></span></h2>
-						<ul class="list-completed-wrapper list-wrapper">
-						</ul>
-					</section>
-				</div>
-			</main>
-			<footer></footer>
-		</div>
-	</div>
-	<!-- <script src="js/javascript.js"></script> -->
-</body>
-
+            <!-- ---------- MAIN SECTION COMPLETED ---------- -->
+            <section class="section-completed">
+              <h2 class="list-completed-title">
+                Completed <span class="list-completed-count"></span>
+              </h2>
+              <ul class="list-completed-wrapper list-wrapper"></ul>
+            </section>
+          </div>
+        </main>
+        <footer></footer>
+      </div>
+    </div>
+    <!-- <script src="js/javascript.js"></script> -->
+    <script>
+      function myFunction() {
+        document.getElementById('myDropdown').classList.toggle('show');
+      }
+    </script>
+  </body>
 </html>

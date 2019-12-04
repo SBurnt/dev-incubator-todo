@@ -14,6 +14,20 @@ if (window.NodeList && !NodeList.prototype.forEach) {
   };
 }
 
+// Close the dropdown if the user clicks outside of it
+// window.onclick = function(event) {
+//   if (!event.target.matches('.icon-ellipsis-vert')) {
+//     const dropdowns = document.getElementsByClassName('action-task-modal');
+//     let i;
+//     for (i = 0; i < dropdowns.length; i++) {
+//       const openDropdown = dropdowns[i];
+//       if (openDropdown.classList.contains('action-task-modal-hidden')) {
+//         openDropdown.classList.remove('action-task-modal-hidden');
+//       }
+//     }
+//   }
+// };
+
 const colorHightPriority = 'rgb(75, 129, 220)';
 const colorMediumPriority = 'rgb(26, 212, 172)';
 const colorLowPriority = 'rgb(42, 212, 26)';
@@ -442,21 +456,76 @@ const arrTasksCompleted = [
     }
   });
 
+  const li = document.querySelectorAll('.li');
+  const btnFilterPriority = document.querySelector('dropdown');
   // ---------- FILTER BY PRIORITY ----------
-  uSelectFilter.addEventListener('change', e => {
-    const searchPriority = e.target.value;
-    const filteredTasks = arrTasks.filter(item => {
-      if (item.priority.toLowerCase().indexOf(searchPriority.toLowerCase()) > -1) {
-        return true;
-      }
-      if (searchPriority === 'all') {
-        return true;
-      }
-      return false;
-    });
-    const countFilter = filteredTasks.length;
-    createNewTask(filteredTasks, countFilter);
+  li.forEach(el => {
+    // const searchPriority = e.target.value;
+    // const searchDada = e.dataset.hight;
+
+    // console.log(el);
+    console.log('al ', el.dataset.all);
+    console.log(" ");
+    console.log('hei', el.dataset.hight);
+    console.log(" ");
+    console.log('med ', el.dataset.medium);
+
+    // const { all } = el.dataset.all;
+    // console.log('target E ', all);
+
+    // const filteredTasks = arrTasks.filter(item => {
+    //   if (item.priority.toLowerCase().indexOf(searchPriority.toLowerCase()) > -1) {
+    //     return true;
+    //   }
+    //   if (searchPriority === 'all') {
+    //     return true;
+    //   }
+    //   return false;
+    // });
+    // const countFilter = filteredTasks.length;
+    // createNewTask(filteredTasks, countFilter);
   });
+
+  function myFunction() {
+    document.getElementById('myDropdown').classList.toggle('show');
+  }
+
+
+
+  // uSelectFilter.addEventListener('change', e => {
+  //   const searchPriority = e.target.value;
+  //   const filteredTasks = arrTasks.filter(item => {
+  //     if (item.priority.toLowerCase().indexOf(searchPriority.toLowerCase()) > -1) {
+  //       return true;
+  //     }
+  //     if (searchPriority === 'all') {
+  //       return true;
+  //     }
+  //     return false;
+  //   });
+  //   const countFilter = filteredTasks.length;
+  //   createNewTask(filteredTasks, countFilter);
+  // });
+
+  /* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+  // function myFunction() {
+  //   document.getElementById('myDropdown').classList.toggle('show');
+  // }
+
+  // Close the dropdown if the user clicks outside of it
+  // window.onclick = function(event) {
+  //   if (!event.target.matches('.dropbtn')) {
+  //     const dropdowns = document.getElementsByClassName('dropdown-content');
+  //     // const i;
+  //     for (let i = 0; i < dropdowns.length; i++) {
+  //       const openDropdown = dropdowns[i];
+  //       if (openDropdown.classList.contains('show')) {
+  //         openDropdown.classList.remove('show');
+  //       }
+  //     }
+  //   }
+  // };
 
   document.querySelector('#btn-add-task').onclick = newTask;
   createNewTask(arrTasks);
