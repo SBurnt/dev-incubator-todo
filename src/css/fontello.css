@@ -84,6 +84,12 @@
   cursor: pointer;
 }
 
+.icon-sort-alphabet {
+  font-size: 2rem;
+  cursor: pointer;
+  color: rgb(0, 0, 0);
+}
+
 .icon-ellipsis-vert {
   position: absolute;
   top: 40px;

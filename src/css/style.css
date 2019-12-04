@@ -1,5 +1,5 @@
 body {
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   box-sizing: content-box;
 }
 
@@ -100,8 +100,69 @@ body {
 .sort-date-created,
 .sort-task-priority {
   /* height: 30px; */
-  padding:0.375rem 0.75rem;
+  padding: 0.375rem 0.75rem;
 }
+
+.sort-task-priority {
+  background: transparent;
+  background: url(../font/telegram.png) no-repeat;
+  background-size: 33px;
+  padding-top: 33px;
+  border: none;
+  border: 1px solid white;
+  width: 37px;
+  height: 33px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* ____________________________________ */
+
+/* .dropbtn {
+  background-color: #3498DB;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+} */
+
+/* .dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+} */
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content li {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown li:hover {
+  background-color: #ddd;
+}
+
+.show {
+  display: block;
+}
+
+/* __________________________________ */
 
 .btn-primary {
   background-color: rgb(75, 129, 220);

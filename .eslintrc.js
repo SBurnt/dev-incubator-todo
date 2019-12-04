@@ -14,5 +14,6 @@ module.exports = {
     'prettier/prettier': 'error',
     'linebreak-style': ['error', 'windows'],
     'func-names': ['error', 'never'],
+    'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
   },
 };
