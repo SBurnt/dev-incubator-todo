@@ -97,13 +97,14 @@ body {
   justify-content: space-around;
 }
 
+/* ---------- FILTER BY PRIORITY ---------- */
 .sort-date-created,
 .sort-task-priority {
   /* height: 30px; */
   padding: 0.375rem 0.75rem;
 }
 
-.sort-task-priority {
+/* .sort-task-priority {
   background: transparent;
   background: url(../font/telegram.png) no-repeat;
   background-size: 33px;
@@ -115,9 +116,7 @@ body {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-}
-
-/* ____________________________________ */
+} */
 
 /* .dropbtn {
   background-color: #3498DB;
@@ -132,30 +131,30 @@ body {
   background-color: #2980B9;
 } */
 
-.dropdown {
+.dropdown-filter {
   position: relative;
   display: inline-block;
 }
 
-.dropdown-content {
+.dropdown-filter-content {
   display: none;
   position: absolute;
   background-color: #f1f1f1;
-  min-width: 160px;
+  min-width: 145px;
   overflow: auto;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  box-shadow: 0px 8px 12px 0px rgba(0, 0, 0, 0.2);
+  z-index: 10;
 }
 
-.dropdown-content li {
-  color: black;
+.dropdown-filter-content li {
+  color: rgb(0, 0, 0);
   padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
 
-.dropdown li:hover {
-  background-color: #ddd;
+.dropdown-filter li:hover {
+  background-color: rgb(221, 221, 221);
 }
 
 .show {

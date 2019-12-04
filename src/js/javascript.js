@@ -1,6 +1,6 @@
-import '../css/reset.css';
-import '../css/style.css';
-import '../css/fontello.css';
+// import '../css/reset.css';
+// import '../css/style.css';
+// import '../css/fontello.css';
 
 // Browser compatibility ie11 (forEach)
 if (window.NodeList && !NodeList.prototype.forEach) {
@@ -13,20 +13,6 @@ if (window.NodeList && !NodeList.prototype.forEach) {
     }
   };
 }
-
-// Close the dropdown if the user clicks outside of it
-// window.onclick = function(event) {
-//   if (!event.target.matches('.icon-ellipsis-vert')) {
-//     const dropdowns = document.getElementsByClassName('action-task-modal');
-//     let i;
-//     for (i = 0; i < dropdowns.length; i++) {
-//       const openDropdown = dropdowns[i];
-//       if (openDropdown.classList.contains('action-task-modal-hidden')) {
-//         openDropdown.classList.remove('action-task-modal-hidden');
-//       }
-//     }
-//   }
-// };
 
 const colorHightPriority = 'rgb(75, 129, 220)';
 const colorMediumPriority = 'rgb(26, 212, 172)';
@@ -153,7 +139,6 @@ const arrTasksCompleted = [
   const listTodo = document.querySelector('.list-to-do-wrapper');
   const listCompleted = document.querySelector('.list-completed-wrapper');
   const uSelectSort = document.querySelector('.sort-date-created');
-  const uSelectFilter = document.querySelector('.sort-task-priority');
   const uCountToDo = document.querySelector('.list-to-do-count');
   const uCountCompleted = document.querySelector('.list-completed-count');
 
@@ -456,45 +441,41 @@ const arrTasksCompleted = [
     }
   });
 
-  const li = document.querySelectorAll('.li');
-  const btnFilterPriority = document.querySelector('dropdown');
   // ---------- FILTER BY PRIORITY ----------
-  li.forEach(el => {
-    // const searchPriority = e.target.value;
-    // const searchDada = e.dataset.hight;
-
-    // console.log(el);
-    console.log('al ', el.dataset.all);
-    console.log(" ");
-    console.log('hei', el.dataset.hight);
-    console.log(" ");
-    console.log('med ', el.dataset.medium);
-
-    // const { all } = el.dataset.all;
-    // console.log('target E ', all);
-
-    // const filteredTasks = arrTasks.filter(item => {
-    //   if (item.priority.toLowerCase().indexOf(searchPriority.toLowerCase()) > -1) {
-    //     return true;
-    //   }
-    //   if (searchPriority === 'all') {
-    //     return true;
-    //   }
-    //   return false;
-    // });
-    // const countFilter = filteredTasks.length;
-    // createNewTask(filteredTasks, countFilter);
-  });
-
-  function myFunction() {
-    document.getElementById('myDropdown').classList.toggle('show');
+  const li = document.querySelectorAll('.li');
+  const btnFilterPriority = document.querySelector('.icon-filter');
+  function filterPrior() {
+    li.forEach(items => {
+      console.log('items ', items);
+      items.addEventListener('click', item => {
+        const searchPriority = Object.keys(item.target.dataset);
+        const filteredTasks = arrTasks.filter(it => {
+          if (it.priority.toLowerCase().indexOf(searchPriority[0].toLowerCase()) > -1) {
+            return true;
+          }
+          if (searchPriority[0] === 'all') {
+            return true;
+          }
+          return false;
+        });
+        const countFilter = filteredTasks.length;
+        createNewTask(filteredTasks, countFilter);
+      });
+    });
   }
 
+  /* toggle between hiding and showing the dropdown content */
+  btnFilterPriority.addEventListener('click', () => {
+    document.getElementById('dropdown-filter-list').classList.toggle('show');
+    filterPrior();
+  });
 
-
+  // const uSelectFilter = document.querySelector('.sort-task-priority');
   // uSelectFilter.addEventListener('change', e => {
   //   const searchPriority = e.target.value;
+  //   // console.log('select ', searchPriority);
   //   const filteredTasks = arrTasks.filter(item => {
+  //     console.log('item ', item);
   //     if (item.priority.toLowerCase().indexOf(searchPriority.toLowerCase()) > -1) {
   //       return true;
   //     }
@@ -507,25 +488,18 @@ const arrTasksCompleted = [
   //   createNewTask(filteredTasks, countFilter);
   // });
 
-  /* When the user clicks on the button, 
-toggle between hiding and showing the dropdown content */
-  // function myFunction() {
-  //   document.getElementById('myDropdown').classList.toggle('show');
-  // }
-
   // Close the dropdown if the user clicks outside of it
-  // window.onclick = function(event) {
-  //   if (!event.target.matches('.dropbtn')) {
-  //     const dropdowns = document.getElementsByClassName('dropdown-content');
-  //     // const i;
-  //     for (let i = 0; i < dropdowns.length; i++) {
-  //       const openDropdown = dropdowns[i];
-  //       if (openDropdown.classList.contains('show')) {
-  //         openDropdown.classList.remove('show');
-  //       }
-  //     }
-  //   }
-  // };
+  window.onclick = event => {
+    if (!event.target.matches('.dropbtn')) {
+      const dropdowns = document.getElementsByClassName('dropdown-filter-content');
+      for (let i = 0; i < dropdowns.length; i++) {
+        const openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  };
 
   document.querySelector('#btn-add-task').onclick = newTask;
   createNewTask(arrTasks);
