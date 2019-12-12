@@ -1,6 +1,6 @@
-// import '../css/reset.css';
-// import '../css/style.css';
-// import '../css/fontello.css';
+import '../css/reset.css';
+import '../css/style.css';
+import '../css/fontello.css';
 
 // Browser compatibility ie11 (forEach)
 if (window.NodeList && !NodeList.prototype.forEach) {
@@ -138,7 +138,6 @@ const arrTasksCompleted = [
   const uSelectPriority = document.querySelector('.select-task-priority');
   const listTodo = document.querySelector('.list-to-do-wrapper');
   const listCompleted = document.querySelector('.list-completed-wrapper');
-  const uSelectSort = document.querySelector('.sort-date-created');
   const uCountToDo = document.querySelector('.list-to-do-count');
   const uCountCompleted = document.querySelector('.list-completed-count');
 
@@ -209,7 +208,7 @@ const arrTasksCompleted = [
     newLi.appendChild(newText);
 
     const newActionTask = document.createElement('div');
-    newActionTask.className = 'icon-ellipsis-vert';
+    newActionTask.className = 'icon-ellipsis-vert dropbtn';
     newLi.appendChild(newActionTask);
 
     const newActionTaskModal = document.createElement('div');
@@ -421,32 +420,71 @@ const arrTasksCompleted = [
   // ---------------------------------------------
 
   // ---------- SORT BY DATE ----------
-  uSelectSort.addEventListener('change', e => {
-    if (e.target.value === 'up') {
-      arrTasks.sort(function(a, b) {
-        if (a.date.toLowerCase() > b.date.toLowerCase()) {
-          return -1;
+  const btnSortDate = document.querySelector('.icon-sort-alphabet');
+  const sortItem = document.querySelectorAll('.sort__item');
+
+  function sortDate() {
+    sortItem.forEach(items => {
+      // console.log('items sort ', items);
+      // console.log('items id ', id);
+      items.addEventListener('click', item => {
+        // const { dataset } = item.target;
+        const dataset = Object.values(item.target.dataset);
+        // console.log('sort item dataset ', dataset);
+        if (dataset[0] === 'new') {
+          arrTasks.sort((a, b) => {
+            if (a.date.toLowerCase() > b.date.toLowerCase()) {
+              return -1;
+            }
+            return 1;
+          });
+          createNewTask(arrTasks);
+        } else {
+          arrTasks.sort(function(a, b) {
+            if (a.date.toLowerCase() > b.date.toLowerCase()) {
+              return 1;
+            }
+            return -1;
+          });
+          createNewTask(arrTasks);
         }
-        return 1;
       });
-      createNewTask(arrTasks);
-    } else {
-      arrTasks.sort(function(a, b) {
-        if (a.date.toLowerCase() > b.date.toLowerCase()) {
-          return 1;
-        }
-        return -1;
-      });
-      createNewTask(arrTasks);
-    }
+    });
+  }
+
+  /* toggle between hiding and showing the dropdown content */
+  btnSortDate.addEventListener('click', () => {
+    document.getElementById('dropdown-sort-list').classList.toggle('show');
+    sortDate();
   });
 
+  // const uSelectSort = document.querySelector('.sort-date-created');
+  // uSelectSort.addEventListener('change', e => {
+  //   if (e.target.value === 'up') {
+  //     arrTasks.sort(function(a, b) {
+  //       if (a.date.toLowerCase() > b.date.toLowerCase()) {
+  //         return -1;
+  //       }
+  //       return 1;
+  //     });
+  //     createNewTask(arrTasks);
+  //   } else {
+  //     arrTasks.sort(function(a, b) {
+  //       if (a.date.toLowerCase() > b.date.toLowerCase()) {
+  //         return 1;
+  //       }
+  //       return -1;
+  //     });
+  //     createNewTask(arrTasks);
+  //   }
+  // });
+
   // ---------- FILTER BY PRIORITY ----------
-  const li = document.querySelectorAll('.li');
+  const filterItem = document.querySelectorAll('.filter__item');
   const btnFilterPriority = document.querySelector('.icon-filter');
   function filterPrior() {
-    li.forEach(items => {
-      console.log('items ', items);
+    filterItem.forEach(items => {
+      // console.log('items ', items);
       items.addEventListener('click', item => {
         const searchPriority = Object.keys(item.target.dataset);
         const filteredTasks = arrTasks.filter(it => {
@@ -490,8 +528,11 @@ const arrTasksCompleted = [
 
   // Close the dropdown if the user clicks outside of it
   window.onclick = event => {
+    // console.log('event ', event);
     if (!event.target.matches('.dropbtn')) {
-      const dropdowns = document.getElementsByClassName('dropdown-filter-content');
+      // const dropdowns = document.getElementsByClassName('dropdown-filter-content');
+      const dropdowns = document.querySelectorAll('.ad');
+      // console.log('dropdowns ', dropdowns)
       for (let i = 0; i < dropdowns.length; i++) {
         const openDropdown = dropdowns[i];
         if (openDropdown.classList.contains('show')) {

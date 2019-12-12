@@ -84,10 +84,14 @@
   cursor: pointer;
 }
 
-.icon-filter {
+.icon-filter, .icon-sort-alphabet {
   font-size: 2rem;
   cursor: pointer;
   color: rgb(0, 0, 0);
+}
+
+.icon-sort-alphabet {
+
 }
 
 .icon-ellipsis-vert {
